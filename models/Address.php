@@ -33,7 +33,7 @@ class Address extends Model
     public function rules()
     {
         return [
-            [['name', 'state', 'postCode', 'addressLine1', 'addressLine2'], 'required'],
+            [['name', 'state', 'postCode', 'city', 'addressLine1', 'addressLine2', 'state'], 'required'],
         ];
     }
 

@@ -1,6 +1,8 @@
 <?php
 /** @var \tonisormisson\addressform\AddressForm $widget */
-/** @var  \yii\bootstrap\ActiveForm $foirm */
+/** @var  \yii\bootstrap\ActiveForm $form */
+/** @var  \tonisormisson\addressform\models\Address $model */
+
 use kartik\depdrop\DepDrop;
 use kartik\select2\Select2;
 use yii\helpers\Url;
@@ -9,11 +11,9 @@ use yii\helpers\Url;
 
 
 
-<div class="form-group">
-    <label class="col-sm-2 control-label" for="textinput"><?=$widget->attributeLabels['country']?></label>
-    <div class="col-sm-4">
-        <?= Select2::widget([
-            'name' => 'country',
+<div class="row">
+    <div class="col-sm-6">
+        <?= $form->field($model, 'country')->widget(Select2::class, [
             'data' => $widget->getCountryList(),
             'options' => [
                 'id' => $widget->fieldIdPrefix . "country",
@@ -25,14 +25,11 @@ use yii\helpers\Url;
             ],
         ]);?>
     </div>
-
-    <label class="col-sm-2 control-label" for="textinput"><?=$widget->attributeLabels['state']?></label>
-    <div class="col-sm-4">
-        <?= DepDrop::widget([
-            'name' => 'region',
+    <div class="col-sm-6">
+        <?= $form->field($model, 'state')->widget(DepDrop::class, [
             'type'=>DepDrop::TYPE_SELECT2,
             'options' => [
-                'id' => $widget->fieldIdPrefix . "-region",
+                'id' => $widget->fieldIdPrefix . "-state",
             ],
             'select2Options'=>['pluginOptions'=>['allowClear'=>true]],
             'pluginOptions'=>[

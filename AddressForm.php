@@ -52,6 +52,12 @@ class AddressForm extends Widget
     public $address;
 
 
+    /**
+     * @var array config yii\bootstrap\ActiveForm
+     */
+    public $formOptions = [];
+
+
     public function init()
     {
         parent::init();
