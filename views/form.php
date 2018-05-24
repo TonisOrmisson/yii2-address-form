@@ -1,42 +1,24 @@
 <?php
 /** @var \yii\web\View $this */
 /** @var \tonisormisson\addressform\AddressForm $widget */
+use yii\bootstrap\ActiveForm;
 
-
+$model = $widget->address;
 ?>
 
 <div class="form-horizontal" role="form">
+    <?php $form = (empty($widget->form)) ? ActiveForm::begin(['layout' => 'horizontal']) : $widget->form ?>
+
     <fieldset>
-        <?php if (!in_array('name', $widget->disabledFields)):?>
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput"><?=$widget->attributeLabels['name']?></label>
-            <div class="col-sm-10">
-                <input id="<?=$widget->fieldIdPrefix?>name" name="name" placeholder="<?=$widget->placeHolders['name']?>" class="form-control" type="text">
-            </div>
-        </div>
-        <?php endif;?>
+        <?= (in_array('name', $widget->disabledFields)) ? null: $form->field($model, 'name')->textInput(['placeholder'=>$widget->placeHolders['name']]) ?>
+        <?= $this->render('_country-region-row', ['widget' => $widget, 'form' => $form]) ?>
 
-        <?= $this->render('_country-region-row', ['widget' => $widget]) ?>
-
-        <?php if (!in_array('addressLine1', $widget->disabledFields)):?>
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput"><?=$widget->attributeLabels['addressLine1']?></label>
-            <div class="col-sm-10">
-                <input id="<?=$widget->fieldIdPrefix?>address-line-1" name="address-line-1" placeholder="<?=$widget->placeHolders['addressLine1']?>" class="form-control" type="text">
-            </div>
-        </div>
-        <?php endif;?>
-
-        <?php if (!in_array('addressLine2', $widget->disabledFields)):?>
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput"><?=$widget->attributeLabels['addressLine2']?></label>
-            <div class="col-sm-10">
-                <input  id="<?=$widget->fieldIdPrefix?>address-line-2" name="address-line-2" placeholder="<?=$widget->placeHolders['addressLine2']?>" class="form-control" type="text">
-            </div>
-        </div>
-        <?php endif;?>
-
-        <?= $this->render('_city-postcode-row', ['widget' => $widget]) ?>
+        <?= (in_array('addressLine1', $widget->disabledFields)) ? null: $form->field($model, 'addressLine1')->textInput(['placeholder'=>$widget->placeHolders['addressLine1']]) ?>
+        <?= (in_array('addressLine2', $widget->disabledFields)) ? null: $form->field($model, 'addressLine2')->textInput(['placeholder'=>$widget->placeHolders['addressLine2']]) ?>
+        <?= (in_array('city', $widget->disabledFields)) ? null: $form->field($model, 'city')->textInput(['placeholder'=>$widget->placeHolders['city']]) ?>
+        <?= (in_array('postCode', $widget->disabledFields)) ? null: $form->field($model, 'postCode')->textInput(['postCode'=>$widget->placeHolders['postCode']]) ?>
+        <?= \yii\helpers\Html::submitButton()?>
 
     </fieldset>
+    <?php (empty($widget->form)) ? ActiveForm::end() : null?>
 </div>

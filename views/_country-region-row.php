@@ -1,6 +1,6 @@
 <?php
 /** @var \tonisormisson\addressform\AddressForm $widget */
-
+/** @var  \yii\bootstrap\ActiveForm $foirm */
 use kartik\depdrop\DepDrop;
 use kartik\select2\Select2;
 use yii\helpers\Url;

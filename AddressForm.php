@@ -2,17 +2,20 @@
 
 namespace tonisormisson\addressform;
 
+use tonisormisson\addressform\models\Address;
 use tonisormisson\addressform\traits\TranslationsTrait;
 use yii\base\Widget;
 use Yii;
 use Rinvex\Country\Country;
-
+use yii\widgets\ActiveForm;
 
 
 /**
  * Class AddressForm
  * @property array $countryList
  * @property Country[] $countries
+ * @property boolean $isFormInjected
+ *
  *
  * @package tonisormisson\addressform
  * @author Tõnis Ormisson <tonis@andmemasin.eu>
@@ -39,15 +42,29 @@ class AddressForm extends Widget
     /** @var Module */
     public $module;
 
+    /** @var ActiveForm */
+    public $form;
+
     /** @var array Fields to disable */
     public $disabledFields = [];
+
+    /** @var Address */
+    public $address;
+
 
     public function init()
     {
         parent::init();
+        $this->registerTranslations();
         $this->module = Yii::$app->getModule('addressform');
 
-        $this->registerTranslations();
+        if (empty($this->address)) {
+            $this->address = new Address();
+        } else {
+            $this->address->validate();
+        }
+
+
 
         $this->attributeLabels = [
             'name' => Yii::t("addressform", "Name"),
@@ -69,6 +86,8 @@ class AddressForm extends Widget
             'addressLine2' => Yii::t("addressform", "Section, floor, etc."),
         ];
     }
+
+
 
 
     public function run()
@@ -110,5 +129,6 @@ class AddressForm extends Widget
         return $countries;
 
     }
+
 
 }
