@@ -1,6 +1,7 @@
 {
   "name": "tonisormisson/yii2-address-from",
   "type": "yii2-module",
+  "license":"MIT",
   "description": "yii2-widget address-form",
   "keywords": [
     "Yii2", "module", "address-form", "country", "region"
