@@ -31,9 +31,6 @@ class AddressForm extends Widget
 
     public $name = "address-form";
 
-    /** @var array $attributeLabels Form labels */
-    public $attributeLabels;
-
     /** @var array $placeHolders Form placeholders */
     public $placeHolders;
 
@@ -70,17 +67,6 @@ class AddressForm extends Widget
             $this->address->validate();
         }
 
-
-
-        $this->attributeLabels = [
-            'name' => Yii::t("addressform", "Name"),
-            'country' => Yii::t("addressform", "Country"),
-            'state' => Yii::t("addressform", "State"),
-            'city' => Yii::t("addressform", "City"),
-            'postCode' => Yii::t("addressform", "Post Code"),
-            'addressLine1' => Yii::t("addressform", "Street address"),
-            'addressLine2' => Yii::t("addressform", "Section, floor, etc."),
-        ];
 
         $this->placeHolders = [
             'name' => Yii::t("addressform", "John Doe"),

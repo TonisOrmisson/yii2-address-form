@@ -16,16 +16,6 @@ use tonisormisson\addressform\AddressForm;
 
 echo AddressForm::widget([
     'allowedCountries' => ["EE", "LV", "LT"],
-    'fieldIdPrefix' => 'my-model-name-',
-    'attributeLabels' = [
-        // custom labels here if needed
-        'country' => ,
-        'state' => ,
-        'city' => ,
-        'postCode' => ,
-        'addressLine1' => ,
-        'addressLine2' => ,
-    ],
     'placeHolders' = [
         // custom placeholders here if needed
         'country' => ,

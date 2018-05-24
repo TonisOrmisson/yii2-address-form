@@ -2,7 +2,13 @@
 namespace tonisormisson\addressform\models;
 
 use yii\base\Model;
+use Yii;
 
+/**
+ * Class Address
+ * @package tonisormisson\addressform\models
+ * @author Tõnis Ormisson <tonis@andmemasin.eu>
+ */
 class Address extends Model
 {
     /** @var string */
@@ -33,7 +39,21 @@ class Address extends Model
     public function rules()
     {
         return [
-            [['name', 'state', 'postCode', 'city', 'addressLine1', 'addressLine2', 'state'], 'required'],
+            [['name', 'country', 'state', 'postCode', 'city', 'addressLine1', 'addressLine2', 'state'], 'required'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'name' => Yii::t("addressform", "Name"),
+            'country' => Yii::t("addressform", "Country"),
+            'state' => Yii::t("addressform", "State"),
+            'city' => Yii::t("addressform", "City"),
+            'postCode' => Yii::t("addressform", "Post Code"),
+            'addressLine1' => Yii::t("addressform", "Street address"),
+            'addressLine2' => Yii::t("addressform", "Section, floor, etc."),
+
         ];
     }
 
