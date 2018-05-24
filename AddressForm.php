@@ -53,12 +53,18 @@ class AddressForm extends Widget
     /** @var Address */
     public $address;
 
-
     /**
      * @var array config yii\bootstrap\ActiveForm
      */
     public $formOptions = [];
 
+    /** @var string */
+    public $submitText;
+
+    /** @var array $submitOptions  the HTML options for submit button */
+    public $submitOptions = [
+        'class' => 'btn btn-primary',
+    ];
 
     public function init()
     {
@@ -66,25 +72,16 @@ class AddressForm extends Widget
         $this->registerTranslations();
         $this->module = Yii::$app->getModule('addressform');
 
-        if (empty($this->address)) {
-            $this->address = new Address();
-        } else {
-            $this->address->validate();
-        }
-
-        if (count($this->allowedCountries) === 1) {
-            $this->country = country($this->allowedCountries[0]);
-        }
-
+        $this->setDefaults();
 
         $this->placeHolders = [
             'name' => Yii::t("addressform", "John Doe"),
             'country' => Yii::t("addressform", "Select country"),
             'state' => Yii::t("addressform", "Select state"),
             'city' => Yii::t("addressform", "New York City"),
-            'postCode' => Yii::t("addressform", "Post Code"),
+            'postCode' => Yii::t("addressform", "10001"),
             'addressLine1' => Yii::t("addressform", "350 Fifth Avenue"),
-            'addressLine2' => Yii::t("addressform", "Section, floor, etc."),
+            'addressLine2' => Yii::t("addressform", "2nd floor, room 203"),
         ];
     }
 
@@ -137,6 +134,24 @@ class AddressForm extends Widget
             $countries[$countryCode] = country($countryCode);
         }
         return $countries;
+
+    }
+
+    private function setDefaults()
+    {
+        if (empty($this->address)) {
+            $this->address = new Address();
+        } else {
+            $this->address->validate();
+        }
+
+        if (count($this->allowedCountries) === 1) {
+            $this->country = country($this->allowedCountries[0]);
+        }
+
+        if (empty($this->submitText)) {
+            $this->submitText = Yii::t("addressform", "Send");
+        }
 
     }
 

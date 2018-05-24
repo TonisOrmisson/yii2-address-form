@@ -22,6 +22,6 @@ $model = $widget->address;
             <?= (in_array('postCode', $widget->disabledFields)) ? null: $form->field($model, 'postCode')->textInput(['placeholder'=>$widget->placeHolders['postCode']]) ?>
         </div>
     </div>
-    <?= empty($widget->form) ? Html::submitButton() : null?>
+    <?= empty($widget->form) ? Html::submitButton($widget->submitText,$widget->submitOptions) : null?>
 
 <?php (empty($widget->form)) ? ActiveForm::end() : null?>
