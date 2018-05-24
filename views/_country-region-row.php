@@ -20,7 +20,6 @@ $country =$widget->getCountry();
         <?= $form->field($model, 'country')->widget(Select2::class, [
             'data' => $widget->getCountryList(),
             'options' => [
-                'id' => $widget->fieldIdPrefix . "country",
                 'multiple' => false,
                 'placeholder' => $widget->placeHolders['country'],
                 'disabled' => !is_null($country),
@@ -36,15 +35,12 @@ $country =$widget->getCountry();
     <?php if(is_null($country)):?>
         <?= $form->field($model, 'state')->widget(DepDrop::class, [
             'type'=>DepDrop::TYPE_SELECT2,
-            'options' => [
-                'id' => $widget->fieldIdPrefix . "-state",
-            ],
             'select2Options'=>['pluginOptions'=>['allowClear'=>true]],
             'pluginOptions'=>[
                 'placeholder' => $widget->placeHolders['state'],
                 'depends'=>[$widget->fieldIdPrefix . 'country'],
                 'url' => Url::toRoute(['/addressform/query/regions']),
-                'loadingText' => 'Loading child level 1 ...',
+                'loadingText' => Yii::t("addressform", "Loading") . "...",
                 'value' => !is_null($country) ? (new AddressHelper())->formatList($country->getDivisions()) : [],
             ],
         ]);?>
@@ -52,7 +48,6 @@ $country =$widget->getCountry();
         <?= $form->field($model, 'state')->widget(Select2::class, [
             'data'=>  ArrayHelper::map((new AddressHelper())->formatList($country->getDivisions()),'id', 'name'),
             'options' => [
-                'id' => $widget->fieldIdPrefix . "-state",
                 'placeholder' => $widget->placeHolders['state'],
             ],
         ]);?>

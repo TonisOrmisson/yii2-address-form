@@ -39,8 +39,6 @@ class AddressForm extends Widget
     /** @var array $placeHolders Form placeholders */
     public $placeHolders;
 
-    public $fieldIdPrefix = "address-form-";
-
     /** @var Module */
     public $module;
 
@@ -60,6 +58,7 @@ class AddressForm extends Widget
 
     /** @var string */
     public $submitText;
+
 
     /** @var array $submitOptions  the HTML options for submit button */
     public $submitOptions = [
