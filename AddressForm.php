@@ -29,6 +29,11 @@ class AddressForm extends Widget
      */
     public $allowedCountries = [];
 
+    /**
+     * @var Country
+     */
+    private $country;
+
     public $name = "address-form";
 
     /** @var array $placeHolders Form placeholders */
@@ -67,6 +72,10 @@ class AddressForm extends Widget
             $this->address->validate();
         }
 
+        if (count($this->allowedCountries) === 1) {
+            $this->country = country($this->allowedCountries[0]);
+        }
+
 
         $this->placeHolders = [
             'name' => Yii::t("addressform", "John Doe"),
@@ -92,13 +101,22 @@ class AddressForm extends Widget
     /**
      * @return string[]
      */
-    public function getCountryList() {
+    public function getCountryList()
+    {
 
         $countryList = [];
         foreach ($this->countries as $country) {
             $countryList[$country->getIsoAlpha2()] = $country->getEmoji(). " " . $country->getName();
         }
         return $countryList;
+    }
+
+    /**
+     * @return Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 
     /**
