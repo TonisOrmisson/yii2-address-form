@@ -2,7 +2,7 @@
 A module doing address-form fields with dependent pre-set country-region drop-downs.
 Countries & regions powered by:
 
-##`rinvex/country`
+## powered by rinvex/country
  
 250 countries & regions worldwide available
 
