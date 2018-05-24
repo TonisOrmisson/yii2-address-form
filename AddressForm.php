@@ -39,6 +39,9 @@ class AddressForm extends Widget
     /** @var Module */
     public $module;
 
+    /** @var array Fields to disable */
+    public $disabledFields = [];
+
     public function init()
     {
         parent::init();
@@ -47,6 +50,7 @@ class AddressForm extends Widget
         $this->registerTranslations();
 
         $this->attributeLabels = [
+            'name' => Yii::t("addressform", "Name"),
             'country' => Yii::t("addressform", "Country"),
             'state' => Yii::t("addressform", "State"),
             'city' => Yii::t("addressform", "City"),
@@ -56,11 +60,12 @@ class AddressForm extends Widget
         ];
 
         $this->placeHolders = [
+            'name' => Yii::t("addressform", "John Doe"),
             'country' => Yii::t("addressform", "Select country"),
             'state' => Yii::t("addressform", "Select state"),
-            'city' => Yii::t("addressform", "Kilingi-Nõmme"),
+            'city' => Yii::t("addressform", "New York City"),
             'postCode' => Yii::t("addressform", "Post Code"),
-            'addressLine1' => Yii::t("addressform", "Mäe 2"),
+            'addressLine1' => Yii::t("addressform", "350 Fifth Avenue"),
             'addressLine2' => Yii::t("addressform", "Section, floor, etc."),
         ];
     }

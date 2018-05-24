@@ -1,84 +1,42 @@
 <?php
+/** @var \yii\web\View $this */
 /** @var \tonisormisson\addressform\AddressForm $widget */
-
-use kartik\depdrop\DepDrop;
-use kartik\select2\Select2;
-use yii\helpers\Url;
 
 
 ?>
 
 <div class="form-horizontal" role="form">
     <fieldset>
-
-        <!-- Text input-->
+        <?php if (!in_array('name', $widget->disabledFields)):?>
         <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput"><?=$widget->attributeLabels['country']?></label>
-            <div class="col-sm-4">
-                <?= Select2::widget([
-                    'name' => 'country',
-                    'data' => $widget->getCountryList(),
-                    'options' => [
-                        'id' => $widget->fieldIdPrefix . "country",
-                        'multiple' => false,
-                        'placeholder' => $widget->placeHolders['country'],
-                    ],
-                    'pluginOptions'=>[
-                        'placeholder' => $widget->placeHolders['country'],
-                    ],
-                ]);?>
-            </div>
-
-            <label class="col-sm-2 control-label" for="textinput"><?=$widget->attributeLabels['state']?></label>
-            <div class="col-sm-4">
-                <?= DepDrop::widget([
-                    'name' => 'region',
-                    'type'=>DepDrop::TYPE_SELECT2,
-                    'options' => [
-                        'id' => $widget->fieldIdPrefix . "-region",
-                    ],
-                    'select2Options'=>['pluginOptions'=>['allowClear'=>true]],
-                    'pluginOptions'=>[
-                        'placeholder' => $widget->placeHolders['state'],
-                        'depends'=>[$widget->fieldIdPrefix . 'country'],
-                        'url' => Url::toRoute(['/addressform/query/regions']),
-                        'loadingText' => 'Loading child level 1 ...',
-                    ],
-                ]);?>
+            <label class="col-sm-2 control-label" for="textinput"><?=$widget->attributeLabels['name']?></label>
+            <div class="col-sm-10">
+                <input id="<?=$widget->fieldIdPrefix?>name" name="name" placeholder="<?=$widget->placeHolders['name']?>" class="form-control" type="text">
             </div>
         </div>
+        <?php endif;?>
 
-        <!-- Text input-->
-        <div class="form-group">
+        <?= $this->render('_country-region-row', ['widget' => $widget]) ?>
 
-        </div>
-
-        <!-- Text input-->
+        <?php if (!in_array('addressLine1', $widget->disabledFields)):?>
         <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput"><?=$widget->attributeLabels['addressLine1']?></label>
             <div class="col-sm-10">
                 <input id="<?=$widget->fieldIdPrefix?>address-line-1" name="address-line-1" placeholder="<?=$widget->placeHolders['addressLine1']?>" class="form-control" type="text">
             </div>
         </div>
+        <?php endif;?>
 
-        <!-- Text input-->
+        <?php if (!in_array('addressLine2', $widget->disabledFields)):?>
         <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput"><?=$widget->attributeLabels['addressLine2']?></label>
             <div class="col-sm-10">
                 <input  id="<?=$widget->fieldIdPrefix?>address-line-2" name="address-line-2" placeholder="<?=$widget->placeHolders['addressLine2']?>" class="form-control" type="text">
             </div>
         </div>
+        <?php endif;?>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput"><?=$widget->attributeLabels['city']?></label>
-            <div class="col-sm-6">
-                <input  id="<?=$widget->fieldIdPrefix?>city" name="city" placeholder="<?=$widget->placeHolders['city']?>" class="form-control" type="text">
-            </div>
-            <div class="col-sm-4">
-                <input  id="<?=$widget->fieldIdPrefix?>postCode" name="postCode" placeholder="<?=$widget->placeHolders['postCode']?>" class="form-control" type="text">
-            </div>
-        </div>
+        <?= $this->render('_city-postcode-row', ['widget' => $widget]) ?>
 
     </fieldset>
 </div>
