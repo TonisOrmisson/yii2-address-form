@@ -34,7 +34,7 @@ class AddressForm extends Widget
      */
     private $country;
 
-    public $name = "address-form";
+    public $id = "address-form";
 
     /** @var array $placeHolders Form placeholders */
     public $placeHolders;
@@ -64,6 +64,8 @@ class AddressForm extends Widget
     public $submitOptions = [
         'class' => 'btn btn-primary',
     ];
+
+    public $htmlOptions = [];
 
     public function init()
     {
@@ -149,6 +151,12 @@ class AddressForm extends Widget
 
         if (empty($this->submitText)) {
             $this->submitText = Yii::t("addressform", "Send");
+        }
+        $this->htmlOptions['id'] = $this->id;
+        if (!empty($this->htmlOptions)) {
+            foreach ($this->htmlOptions as $key => $value) {
+                $this->htmlOptions[$key] = $value;
+            }
         }
 
     }

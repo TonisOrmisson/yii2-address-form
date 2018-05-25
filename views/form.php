@@ -8,8 +8,8 @@ use yii\helpers\Html;
 $model = $widget->address;
 ?>
 
-<?php $form = (empty($widget->form)) ? ActiveForm::begin($widget->formOptions) : $widget->form ?>
-
+<?= Html::beginTag("div", $widget->htmlOptions) ?>
+    <?php $form = (empty($widget->form)) ? ActiveForm::begin($widget->formOptions) : $widget->form ?>
     <?= (in_array('name', $widget->disabledFields)) ? null: $form->field($model, 'name')->textInput(['placeholder'=>$widget->placeHolders['name']]) ?>
     <?= $this->render('_country-region-row', ['widget' => $widget, 'form' => $form, 'model' => $model]) ?>
     <?= (in_array('addressLine1', $widget->disabledFields)) ? null: $form->field($model, 'addressLine1')->textInput(['placeholder'=>$widget->placeHolders['addressLine1']]) ?>
@@ -25,3 +25,4 @@ $model = $widget->address;
     <?= empty($widget->form) ? Html::submitButton($widget->submitText,$widget->submitOptions) : null?>
 
 <?php (empty($widget->form)) ? ActiveForm::end() : null?>
+<?= Html::endTag("div")?>
