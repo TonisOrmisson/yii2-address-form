@@ -140,12 +140,11 @@ class AddressForm extends Widget
     {
         if (empty($this->address)) {
             $this->address = new Address();
-        } else {
-            $this->address->validate();
         }
 
         if (count($this->allowedCountries) === 1) {
             $this->country = country($this->allowedCountries[0]);
+            $this->address->country = $this->country->getIsoAlpha2();
         }
 
         if (empty($this->submitText)) {

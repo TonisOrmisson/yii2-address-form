@@ -10,10 +10,8 @@ use tonisormisson\addressform\AddressHelper;
 use yii\helpers\ArrayHelper;
 
 $country =$widget->getCountry();
+$countryDisabled = !is_null($country);
 ?>
-
-
-
 
 <div class="row">
     <div class="col-sm-6">
@@ -22,8 +20,9 @@ $country =$widget->getCountry();
             'options' => [
                 'multiple' => false,
                 'placeholder' => $widget->placeHolders['country'],
-                'disabled' => !is_null($country),
-                'value' => !is_null($country) ? $country->getIsoAlpha2() : null,
+                'disabled' => $countryDisabled,
+                'value' => $countryDisabled ? $country->getIsoAlpha2() : null,
+                'enableClientValidation' => false,
             ],
             'pluginOptions'=>[
                 'placeholder' => $widget->placeHolders['country'],
