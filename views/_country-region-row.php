@@ -28,6 +28,7 @@ $countryDisabled = !is_null($country);
                 'placeholder' => $widget->placeHolders['country'],
             ],
         ]);?>
+        <?= $countryDisabled ?  $form->field($model, 'country')->hiddenInput(['value'=> $country->getIsoAlpha2()])->label(false) : null ?>
     </div>
 
     <div class="col-sm-6">
