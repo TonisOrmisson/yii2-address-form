@@ -32,6 +32,20 @@ class Address extends Model
     /** @var string $addressLine2 */
     public $addressLine2;
 
+    public static $defaultRequiredFields = ['name', 'country', 'state', 'postCode', 'city', 'addressLine1', 'state'];
+
+    public $requiredFields = [];
+
+    /**
+     * {@inheritdoc}
+     */
+    public function init()
+    {
+        parent::init();
+        if (empty($this->requiredFields)) {
+            $this->requiredFields = self::$defaultRequiredFields;
+        }
+    }
 
     /**
      * {@inheritdoc}
@@ -39,7 +53,12 @@ class Address extends Model
     public function rules()
     {
         return [
-            [['name', 'country', 'state', 'postCode', 'city', 'addressLine1', 'addressLine2', 'state'], 'required'],
+            [$this->requiredFields, 'required'],
+            [['name', 'city', 'addressLine1', 'addressLine2'], 'string', 'max' => 128],
+            [['name'], 'string', 'min' => 2],
+            [['country'], 'string', 'min' => 2, 'max' => 2], // 2-char iso code
+            [['state'], 'string', 'max' => 8], // code
+            [['postCode'], 'string', 'min' => 2, 'max' => 12], // code
         ];
     }
 
@@ -56,6 +75,5 @@ class Address extends Model
 
         ];
     }
-
 
 }

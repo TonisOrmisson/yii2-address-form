@@ -141,7 +141,12 @@ class AddressForm extends Widget
     private function setDefaults()
     {
         if (empty($this->address)) {
-            $this->address = new Address();
+            $params = [];
+            if (!empty($this->disabledFields)) {
+                $requiredFields = array_diff(Address::$defaultRequiredFields, $this->disabledFields);
+                $params['requiredFields'] =  $requiredFields;
+            }
+            $this->address = new Address($params);
         }
 
         if (count($this->allowedCountries) === 1) {
