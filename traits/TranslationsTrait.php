@@ -15,7 +15,7 @@ trait TranslationsTrait
         \Yii::$app->i18n->translations['addressform'] = [
             'class' => PhpMessageSource::class,
             'sourceLanguage' => 'en-US',
-            'basePath' => __DIR__ . '/messages',
+            'basePath' => __DIR__ . '/../messages',
         ];
     }
 
