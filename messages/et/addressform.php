@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'City' => 'Linn',
+    'City' => 'Asula',
     'Country' => 'Riik',
     'Kilingi-Nõmme' => 'Kilingi-Nõmme',
     'Mäe 2' => 'Mäe 2',
@@ -26,5 +26,5 @@ return [
     'Select country' => 'Vali riik',
     'Select state' => 'Vali maakond',
     'State' => 'Maakond',
-    'Street address' => 'Tänav',
+    'Street address' => 'Tänav, maja',
 ];
