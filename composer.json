@@ -1,5 +1,5 @@
 {
-  "name": "tonisormisson/yii2-address-from",
+  "name": "tonisormisson/yii2-address-form",
   "type": "yii2-module",
   "license":"MIT",
   "description": "yii2-widget address-form",
