@@ -44,4 +44,15 @@ echo AddressForm::widget([
             
 ]);
 ```
-    
+### and catch the address in controller
+
+```
+use tonisormisson\addressform\models\Address;
+$address = new Address();
+$address->load(Yii::$app->request->post());
+
+// load the address to your models
+// eg :
+$model->address_data = Json::encode($address);
+
+```
