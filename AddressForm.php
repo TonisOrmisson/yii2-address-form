@@ -67,6 +67,8 @@ class AddressForm extends Widget
 
     public $htmlOptions = [];
 
+    public $fieldIdPrefix = 'address-';
+
     public function init()
     {
         parent::init();
