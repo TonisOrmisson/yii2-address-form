@@ -11,6 +11,22 @@ Countries & regions powered by:
 250 countries & regions worldwide available
 
 ## Example
+
+### add module config
+the module part will take care of dep-drop ajax queries
+
+```
+
+    'modules' => [
+        //...
+        'addressform' =>[
+            'class' => \tonisormisson\addressform\Module::class,
+        ],
+        //...
+    ]
+```
+
+### place the widet
 ```
 use tonisormisson\addressform\AddressForm; 
 
