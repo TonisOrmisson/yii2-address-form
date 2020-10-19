@@ -10,7 +10,7 @@ use tonisormisson\addressform\AddressHelper;
 use yii\helpers\ArrayHelper;
 
 $country =$widget->getCountry();
-$countryDisabled = count($widget->allowedCountries) < 2;
+$countryDisabled = (count($widget->allowedCountries) < 2 and !empty($widget->allowedCountries));
 ?>
 
 <div class="row">

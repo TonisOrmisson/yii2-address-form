@@ -160,7 +160,7 @@ class AddressForm extends Widget
             $this->address->country = $this->country->getIsoAlpha2();
         }
         if(!empty($this->defaultCountry)) {
-          if(!in_array($this->defaultCountry, $this->allowedCountries))  {
+          if(!in_array($this->defaultCountry, $this->allowedCountries) && !empty($this->allowedCountries))  {
               throw new ErrorException("the set defaultCounty '{$this->defaultCountry}' must be one of the configured allowedCountries");
           }
           $this->country = country($this->defaultCountry);
