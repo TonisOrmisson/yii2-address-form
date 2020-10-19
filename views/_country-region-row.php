@@ -10,7 +10,7 @@ use tonisormisson\addressform\AddressHelper;
 use yii\helpers\ArrayHelper;
 
 $country =$widget->getCountry();
-$countryDisabled = !is_null($country);
+$countryDisabled = count($widget->allowedCountries) < 2;
 ?>
 
 <div class="row">
@@ -21,7 +21,7 @@ $countryDisabled = !is_null($country);
                 'multiple' => false,
                 'placeholder' => $widget->placeHolders['country'],
                 'disabled' => $countryDisabled,
-                'value' => $countryDisabled ? $country->getIsoAlpha2() : null,
+                'value' => $country instanceof \Rinvex\Country\Country ? $country->getIsoAlpha2() : null,
                 'enableClientValidation' => false,
             ],
             'pluginOptions'=>[

@@ -4,6 +4,7 @@ namespace tonisormisson\addressform;
 
 use tonisormisson\addressform\models\Address;
 use tonisormisson\addressform\traits\TranslationsTrait;
+use yii\base\ErrorException;
 use yii\base\Widget;
 use Yii;
 use Rinvex\Country\Country;
@@ -68,6 +69,9 @@ class AddressForm extends Widget
     public $htmlOptions = [];
 
     public $fieldIdPrefix = 'address-';
+
+    /** @var string $defaultCountry */
+    public $defaultCountry = "";
 
     public function init()
     {
@@ -154,6 +158,12 @@ class AddressForm extends Widget
         if (count($this->allowedCountries) === 1) {
             $this->country = country($this->allowedCountries[0]);
             $this->address->country = $this->country->getIsoAlpha2();
+        }
+        if(!empty($this->defaultCountry)) {
+          if(!in_array($this->defaultCountry, $this->allowedCountries))  {
+              throw new ErrorException("the set defaultCounty '{$this->defaultCountry}' must be one of the configured allowedCountries");
+          }
+          $this->country = country($this->defaultCountry);
         }
 
         if (empty($this->submitText)) {

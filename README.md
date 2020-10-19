@@ -32,6 +32,7 @@ use tonisormisson\addressform\AddressForm;
 
 echo AddressForm::widget([
     'allowedCountries' => ["EE", "LV", "LT"],
+    'defaultCountry' => "EE",
     'placeHolders' = [
         // custom placeholders here if needed
         'country' => ,
