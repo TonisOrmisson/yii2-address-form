@@ -14,7 +14,7 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "php": ">=5.4",
+    "php": ">=7.0",
     "yiisoft/yii2": ">=2.0.14",
     "kartik-v/yii2-widget-select2": "^2.1.1",
     "kartik-v/yii2-widget-depdrop": "^1.0.4",
