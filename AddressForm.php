@@ -80,16 +80,6 @@ class AddressForm extends Widget
         $this->module = Yii::$app->getModule('addressform');
 
         $this->setDefaults();
-
-        $this->placeHolders = [
-            'name' => Yii::t("addressform", "John Doe"),
-            'country' => Yii::t("addressform", "Select country"),
-            'state' => Yii::t("addressform", "Select state"),
-            'city' => Yii::t("addressform", "New York City"),
-            'postCode' => Yii::t("addressform", "10001"),
-            'addressLine1' => Yii::t("addressform", "350 Fifth Avenue"),
-            'addressLine2' => Yii::t("addressform", "2nd floor, room 203"),
-        ];
     }
 
 
@@ -173,6 +163,27 @@ class AddressForm extends Widget
         if (!empty($this->htmlOptions)) {
             foreach ($this->htmlOptions as $key => $value) {
                 $this->htmlOptions[$key] = $value;
+            }
+        }
+
+        $this->defaultPlaceHolders();
+
+    }
+
+    private function defaultPlaceHolders()
+    {
+        $defaults = [
+            'name' => Yii::t("addressform", "John Doe"),
+            'country' => Yii::t("addressform", "Select country"),
+            'state' => Yii::t("addressform", "Select state"),
+            'city' => Yii::t("addressform", "New York City"),
+            'postCode' => Yii::t("addressform", "10001"),
+            'addressLine1' => Yii::t("addressform", "350 Fifth Avenue"),
+            'addressLine2' => Yii::t("addressform", "2nd floor, room 203"),
+        ];
+        foreach ($defaults as $key => $value) {
+            if(!isset($this->placeHolders[$key])) {
+                $this->placeHolders[$key] = $value;
             }
         }
 
