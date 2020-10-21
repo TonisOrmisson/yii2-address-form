@@ -186,7 +186,6 @@ class AddressForm extends Widget
                 $this->placeHolders[$key] = $value;
             }
         }
-
     }
 
 
