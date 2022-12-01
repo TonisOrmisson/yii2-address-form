@@ -2,9 +2,11 @@
 
 namespace tonisormisson\addressform;
 
+use tonisormisson\addressform\exceptions\AddressFormException;
 use tonisormisson\addressform\models\Address;
 use tonisormisson\addressform\traits\TranslationsTrait;
 use yii\base\ErrorException;
+use yii\base\InvalidConfigException;
 use yii\base\Widget;
 use Yii;
 use Rinvex\Country\Country;
@@ -28,29 +30,22 @@ class AddressForm extends Widget
     /**
      * @var array $allowedCountries list of allowed countries. If list is empty, all countries are used.
      */
-    public $allowedCountries = [];
+    public array $allowedCountries = [];
 
-    /**
-     * @var Country
-     */
-    private $country;
+    private ?Country $country = null;
 
-    public $id = "address-form";
+    public string $id = "address-form";
 
     /** @var array $placeHolders Form placeholders */
-    public $placeHolders;
+    public array $placeHolders = [];
 
-    /** @var Module */
-    public $module;
-
-    /** @var ActiveForm */
-    public $form;
+    public Module $module;
+    public ?ActiveForm $form = null;
 
     /** @var array Fields to disable */
     public $disabledFields = [];
 
-    /** @var Address */
-    public $address;
+    public Address $address;
 
     /**
      * @var array config yii\bootstrap\ActiveForm
@@ -77,7 +72,12 @@ class AddressForm extends Widget
     {
         parent::init();
         $this->registerTranslations();
-        $this->module = Yii::$app->getModule('addressform');
+        $module = Yii::$app->getModule('addressform');
+        if($module instanceof Module) {
+            $this->module = $module;
+        } else {
+            throw new AddressFormException("Invalid module configurateion");
+        }
 
         $this->setDefaults();
     }
@@ -95,7 +95,7 @@ class AddressForm extends Widget
     /**
      * @return string[]
      */
-    public function getCountryList()
+    public function getCountryList() : array
     {
 
         $countryList = [];
@@ -105,10 +105,7 @@ class AddressForm extends Widget
         return $countryList;
     }
 
-    /**
-     * @return Country
-     */
-    public function getCountry()
+    public function getCountry() : ?Country
     {
         return $this->country;
     }
@@ -116,7 +113,7 @@ class AddressForm extends Widget
     /**
      * @return Country[]
      */
-    public function getCountries()
+    public function getCountries() : array
     {
         $countries = [];
         if (empty($this->allowedCountries)) {

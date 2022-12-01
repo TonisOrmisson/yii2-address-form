@@ -1,14 +1,14 @@
 <?php
 namespace tonisormisson\addressform;
 use tonisormisson\addressform\traits\TranslationsTrait;
+use yii\base\Module as BaseModule;
 
 /**
  * Class Module
- * @property
  * @package tonisormisson\addressform
  * @author Tõnis Ormisson <tonis@andmemasin.eu>
  */
-class Module extends \yii\base\Module
+class Module extends BaseModule
 {
     use TranslationsTrait;
     /**
