@@ -1,6 +1,6 @@
 <?php
 /** @var \tonisormisson\addressform\AddressForm $widget */
-/** @var  \yii\bootstrap\ActiveForm $form */
+/** @var  \yii\widgets\ActiveForm $form */
 /** @var  \tonisormisson\addressform\models\Address $model */
 
 use kartik\depdrop\DepDrop;
@@ -32,10 +32,10 @@ $countryDisabled = (count($widget->allowedCountries) < 2 and !empty($widget->all
     </div>
 
     <div class="col-sm-6">
-    <?php if(is_null($country)):?>
         <?= $form->field($model, 'state')->widget(DepDrop::class, [
             'type'=>DepDrop::TYPE_SELECT2,
             'select2Options'=>['pluginOptions'=>['allowClear'=>true]],
+            'data'=>  !is_null($country) ? ArrayHelper::map((new AddressHelper())->formatList($country->getDivisions()),'id', 'name') : [],
             'pluginOptions'=>[
                 'placeholder' => $widget->placeHolders['state'],
                 'depends'=>[$widget->fieldIdPrefix . 'country'],
@@ -44,13 +44,5 @@ $countryDisabled = (count($widget->allowedCountries) < 2 and !empty($widget->all
                 'value' => !is_null($country) ? (new AddressHelper())->formatList($country->getDivisions()) : [],
             ],
         ]);?>
-    <?php else:?>
-        <?= $form->field($model, 'state')->widget(Select2::class, [
-            'data'=>  ArrayHelper::map((new AddressHelper())->formatList($country->getDivisions()),'id', 'name'),
-            'options' => [
-                'placeholder' => $widget->placeHolders['state'],
-            ],
-        ]);?>
-    <?php endif;?>
     </div>
 </div>
