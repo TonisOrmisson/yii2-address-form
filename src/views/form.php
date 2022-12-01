@@ -2,7 +2,7 @@
 /** @var \yii\web\View $this */
 /** @var \tonisormisson\addressform\AddressForm $widget */
 
-use yii\bootstrap\ActiveForm;
+use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
 $model = $widget->address;

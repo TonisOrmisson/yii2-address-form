@@ -1,4 +1,4 @@
-    {
+{
   "name": "tonisormisson/yii2-address-form",
   "type": "yii2-module",
   "license":"MIT",
@@ -20,12 +20,11 @@
     "kartik-v/yii2-widget-depdrop": "^1.0.4",
     "rinvex/countries": "^8.1.0"
   },
-
-  "autoload": {
-    "psr-4": {
-      "tonisormisson\\addressform\\": ""
-    }
+  "require-dev": {
+    "phpstan/phpstan": "^1"
   },
+
+
   "extra": {
     "platform": {
       "php": "8.0.2"
@@ -35,10 +34,21 @@
       "dev-master": "2.1.x-dev"
     }
   },
-  "repositories": [
+    "autoload": {
+      "psr-4": {
+        "tonisormisson\\addressform\\": "src"
+      }
+    },
+
+      "repositories": [
     {
       "type": "composer",
       "url": "https://asset-packagist.org"
     }
-  ]
+  ],
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true
+    }
+  }
 }
