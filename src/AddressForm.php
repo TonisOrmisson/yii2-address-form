@@ -133,6 +133,7 @@ class AddressForm extends Widget
 
     private function setDefaults()
     {
+
         if (empty($this->address)) {
             $params = [];
             if (!empty($this->disabledFields)) {
@@ -146,11 +147,17 @@ class AddressForm extends Widget
             $this->country = country($this->allowedCountries[0]);
             $this->address->country = $this->country->getIsoAlpha2();
         }
-        if(!empty($this->defaultCountry)) {
-          if(!in_array($this->defaultCountry, $this->allowedCountries) && !empty($this->allowedCountries))  {
-              throw new ErrorException("the set defaultCounty '{$this->defaultCountry}' must be one of the configured allowedCountries");
-          }
-          $this->country = country($this->defaultCountry);
+
+
+        if(!empty($this->address->country)){
+            $this->country = country($this->address->country);
+        }
+
+        if(empty($this->address->country) && !empty($this->defaultCountry)) {
+            if(!in_array($this->defaultCountry, $this->allowedCountries) && !empty($this->allowedCountries))  {
+                throw new ErrorException("the set defaultCounty '{$this->defaultCountry}' must be one of the configured allowedCountries");
+            }
+            $this->country = country($this->defaultCountry);
         }
 
         if (empty($this->submitText)) {
