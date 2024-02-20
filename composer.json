@@ -18,7 +18,7 @@
     "yiisoft/yii2": ">=2.0.14",
     "kartik-v/yii2-widget-select2": "^2.1.1",
     "kartik-v/yii2-widget-depdrop": "^1.0.4",
-    "rinvex/countries": "^8.1.0"
+    "rinvex/countries": "^8|^9"
   },
   "require-dev": {
     "phpstan/phpstan": "^1"
@@ -31,7 +31,7 @@
     },
 
     "branch-alias": {
-      "dev-master": "2.1.x-dev"
+      "dev-master": "2.2.x-dev"
     }
   },
     "autoload": {
